@@ -1,6 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  JoinColumn,
+} from "typeorm";
 
-import Image from './Images'
+import Image from "./Image";
 
 @Entity("imoveis")
 export default class Imovel {
@@ -28,7 +34,7 @@ export default class Imovel {
   @Column()
   suite: string;
 
-  @OneToMany(() => Image, image => image.imovel)
-  @JoinColumn({name: 'imovel_id'})
-  images: Image[]
+  @OneToMany(() => Image, (image) => image.imovel)
+  @JoinColumn({ name: "imovel_id" })
+  images: Image[];
 }

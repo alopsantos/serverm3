@@ -1,13 +1,11 @@
-import { Router } from 'express';
-import multer from 'multer';
+import { Router } from "express";
+import multer from "multer";
 
-import uploadConfig from './config/upload';
-import ImoveisController from './controllers/ImoveisController';
+import uploadConfig from "./config/upload";
+import ImoveisController from "./controllers/ImoveisController";
 
 const routes = Router();
 const upload = multer(uploadConfig);
-
-
 
 routes.get("/imoveis", ImoveisController.index);
 routes.get("/imovel/:id", ImoveisController.show);
