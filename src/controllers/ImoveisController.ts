@@ -1,17 +1,16 @@
-import { Request, response, Response} from 'express'
+import { Request, response, Response } from "express";
 import { getRepository } from "typeorm";
 import Imovel from "../models/Imovel";
 
 export default {
-  async index(request: Request, response: Response){
+  async index(request: Request, response: Response) {
     const imoveisRepository = getRepository(Imovel);
     const imoveis = await imoveisRepository.find();
 
     return response.status(200).json(imoveis);
-
   },
-  async show(request: Request, response: Response){
-    const {id} = request.params;
+  async show(request: Request, response: Response) {
+    const { id } = request.params;
     const imoveisRepository = getRepository(Imovel);
     const imoveis = await imoveisRepository.findOneOrFail(id);
 
@@ -33,6 +32,11 @@ export default {
 
     const imoveisRepository = getRepository(Imovel);
 
+    // const requestImages = request.files as Express.Multer.File[];
+    // const images = requestImages.map((image) => {
+    //   return { path: image.filename };
+    // });
+
     const imovel = imoveisRepository.create({
       code,
       title,
@@ -44,6 +48,7 @@ export default {
       sala,
       cozinha,
       suite,
+      // images
     });
     await imoveisRepository.save(imovel);
 

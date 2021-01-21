@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from "typeorm";
+
+import Image from './Images'
 
 @Entity("imoveis")
 export default class Imovel {
@@ -25,4 +27,8 @@ export default class Imovel {
   cozinha: string;
   @Column()
   suite: string;
+
+  @OneToMany(() => Image, image => image.imovel)
+  @JoinColumn({name: 'imovel_id'})
+  images: Image[]
 }
