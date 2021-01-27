@@ -16,9 +16,9 @@
   },
   "scripts": {
     "start": "node dist/server.js",
-   "dev": "tsnd --transpile-only --ignore-watch node_modules src/server.ts",
-   "build": "tsc",
-   "typeorm": "tsnd ./node_modules/typeorm/cli.js"
+    "dev": "tsnd --transpile-only --ignore-watch node_modules src/server.ts",
+    "build": "tsc",
+    "typeorm": "tsnd ./node_modules/typeorm/cli.js"
   },
   "devDependencies": {
     "@types/cors": "^2.8.9",

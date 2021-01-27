@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
 import imovelView from "../views/imoveis_views";
 import Imovel from "../models/Imovel";
@@ -29,13 +29,9 @@ export default {
       title,
       description,
       image,
-      dormitorios,
-      banheiros,
-      garagem,
-      sala,
-      cozinha,
-      suite,
+      details,
     } = request.body;
+
 
     const imoveisRepository = getRepository(Imovel);
 
@@ -45,39 +41,41 @@ export default {
     // });
     const data = {
       code,
-      title,
+      title: "",
       description,
       image,
-      dormitorios,
-      banheiros,
-      garagem,
-      sala,
-      cozinha,
-      suite,
+      dormitorios: details["dormitorios"],
+      banheiros: details["banheiros"],
+      garagem: details["garagem"],
+      sala: details["suite"],
+      cozinha: details["cozinha"],
+      suite: details["suite"],
       // images
-    }
+    };
 
     const schema = Yup.object().shape({
-      code:Yup.string().required(),
+      code: Yup.string().required(),
       title: Yup.string(),
       description: Yup.string(),
       image: Yup.string().required(),
+
       dormitorios: Yup.string(),
       banheiros: Yup.string(),
       garagem: Yup.string(),
       sala: Yup.string(),
       cozinha: Yup.string(),
       suite: Yup.string(),
+
       // images: Yup.array(
       //   Yup.object().shape({
       //     path: Yup.string().required()
       //   })
       // )
-    })
+    });
 
     await schema.validate(data, {
-      abortEarly: false
-    })
+      abortEarly: false,
+    });
     const imovel = imoveisRepository.create(data);
 
     await imoveisRepository.save(imovel);
