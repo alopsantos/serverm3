@@ -34,7 +34,7 @@ export default class Imovel {
   @Column()
   suite: string;
 
-  @OneToMany(() => Image, (image) => image.imovel)
+  @OneToMany(() => Image, (image:Image) => image.imovel)
   @JoinColumn({ name: "imovel_id" })
   images: Image[];
 }

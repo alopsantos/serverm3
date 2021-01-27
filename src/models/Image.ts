@@ -16,7 +16,7 @@ export default class Image {
   @Column()
   path: string;
 
-  @ManyToOne(() => Imovel, (imovel) => imovel.images, {
+  @ManyToOne(() => Imovel, (imovel:Imovel) => imovel.images, {
     cascade: ["insert", "update"],
   })
   @JoinColumn({ name: "imovel_id" })
