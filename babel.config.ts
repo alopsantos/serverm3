@@ -1,0 +1,21 @@
+module.exports = {
+  presset: [
+    ["@babel/presset-env", { targets: { node: "current" } }],
+    "@babel/preset-typescript",
+  ],
+  plugins: [
+    [
+      "module-resolver",
+      {
+        alias: {
+          "@modules": "./src/modules",
+          "@config": "./src/config",
+          "@shared": "./src/shared",
+        },
+      },
+    ],
+    "babel-plugin-transform-typescript-metada",
+    ["@babel/plugin-proposal-decorators", { legacy: true }],
+    ["@babel/plugin-proposal-class-properties", { loose: true }],
+  ],
+};
